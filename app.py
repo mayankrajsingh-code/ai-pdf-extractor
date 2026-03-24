@@ -23,7 +23,11 @@ st.set_page_config(page_title="AI Bulk PDF Extractor", layout="wide")
 st.title("📂 AI Bulk PDF Extractor")
 
 # Input folder path
-folder_path = st.text_input("Enter folder path (e.g. resumes/)")
+uploaded_files = st.file_uploader(
+    "Upload PDF files",
+    type=["pdf"],
+    accept_multiple_files=True
+)
 
 if st.button("🚀 Process All PDFs"):
     all_results = []
