@@ -11,7 +11,12 @@ load_dotenv()
 
 API_KEY = os.getenv("OPENROUTER_API_KEY")
 
-st.write(API_KEY)
+if not API_KEY:
+    try:
+        API_KEY = st.secrets["OPENROUTER_API_KEY"]
+    except:
+        st.error("API key not found. Please set it in .env or Streamlit secrets.")
+        st.stop()
 
 st.set_page_config(page_title="AI Bulk PDF Extractor", layout="wide")
 
