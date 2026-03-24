@@ -5,6 +5,13 @@ import json
 import pandas as pd
 import re
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+API_KEY = os.getenv("OPENROUTER_API_KEY")
+
+st.write(API_KEY)
 
 st.set_page_config(page_title="AI Bulk PDF Extractor", layout="wide")
 
@@ -68,9 +75,9 @@ Text:
                         url = "https://openrouter.ai/api/v1/chat/completions"
 
                         headers = {
-                            "Authorization": "Bearer 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",
+                            "Authorization": f"Bearer {API_KEY}",
                             "Content-Type": "application/json"
-                        }
+                                }
 
                         payload = {
                             "model": "stepfun/step-3.5-flash:free",
